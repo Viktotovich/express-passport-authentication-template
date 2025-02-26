@@ -7,3 +7,42 @@ module.exports.getIndex = (req, res) => {
   const title = "Welcome to the index page";
   res.render("pages/index", { title, links });
 };
+
+module.exports.getLogIn = (req, res, next) => {
+  //TODO: form
+};
+
+module.exports.postLogIn = (req, res, next) => {};
+
+module.exports.getRegister = (req, res, next) => {
+  //TODO: form
+};
+
+module.exports.postRegister = (req, res, next) => {};
+
+module.exports.getLogInSuccess = (req, res, next) => {
+  res.send(
+    "<p> You have successfully logged in. --> <a href='/protected-route'> Go to the protected route </a></p>"
+  );
+};
+
+module.exports.getLogInFail = (req, res, next) => {
+  res.send("You entered a wrong username or password, please try again");
+};
+
+module.exports.getLogout = (req, res, next) => {
+  req.logout();
+  res.redirect("/");
+};
+
+module.exports.getProtectedRoute = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    res.send(
+      "<h1>You are authenticated</h1><p><a href='/logout'>Logout and reload</a></p>"
+    );
+  } else {
+    res.send(
+      "<h1>You are not authenticated!</h1><p><a href='/login'>Login</a></p>"
+    );
+  }
+};
