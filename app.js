@@ -4,6 +4,7 @@ const path = require("node:path");
 const pgPool = require("./db/pool");
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
+const passport = require("passport");
 require("./config/passport");
 
 const crypto = require("crypto");
@@ -35,6 +36,7 @@ app.use(
   })
 );
 
+app.use(passport.session());
 app.use("/", indexRouter);
 
 app.listen(3000);

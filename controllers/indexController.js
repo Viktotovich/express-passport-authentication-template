@@ -18,7 +18,15 @@ module.exports.getRegister = (req, res, next) => {
   //TODO: form
 };
 
-module.exports.postRegister = (req, res, next) => {};
+module.exports.postRegister = async (req, res, next) => {
+  const saltHash = passwordUtils.genPassword(req.body.password);
+
+  const salt = saltHash.salt;
+  const hash = saltHash.hash;
+
+  await db.addNewUser(req.body.username, hash, salt);
+  res.redirect("/login");
+};
 
 module.exports.getLogInSuccess = (req, res, next) => {
   res.send(
