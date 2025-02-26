@@ -25,6 +25,15 @@ const query = `
   );
 
   CREATE INDEX IF NOT EXISTS "IDX_session_expire" ON "user_sessions" ("expire");
+
+  CREATE TABLE IF NOT EXISTS "users_and_passwords" (
+  "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  "username" VARCHAR(255) NOT NULL UNIQUE,
+  "hash" VARCHAR NOT NULL,
+  "salt" VARCHAR
+  );
+
+  CREATE INDEX IF NOT EXISTS "idx_username" ON "users_and_passwords" ("username");
 `;
 
 async function start() {
