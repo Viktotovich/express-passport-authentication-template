@@ -7,7 +7,6 @@ const pgSession = require("connect-pg-simple")(session);
 const passport = require("passport");
 require("./config/passport");
 
-const crypto = require("crypto");
 const app = express();
 
 //Routes
@@ -39,7 +38,9 @@ app.use(
 app.use(passport.session());
 app.use("/", indexRouter);
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log();
+});
 
 app.use((err, req, res, next) => {
   console.error(err);
