@@ -16,7 +16,8 @@ module.exports.getLogIn = (req, res, next) => {
 module.exports.postLogIn = (req, res, next) => {};
 
 module.exports.getRegister = (req, res, next) => {
-  //TODO: form
+  const title = "Register a new account";
+  res.render("pages/register", { title, links });
 };
 
 module.exports.postRegister = async (req, res, next) => {
