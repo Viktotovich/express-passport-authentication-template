@@ -9,7 +9,8 @@ module.exports.getIndex = (req, res) => {
 };
 
 module.exports.getLogIn = (req, res, next) => {
-  //TODO: form
+  const title = "Login into your profile";
+  res.render("pages/login", { title, links });
 };
 
 module.exports.postLogIn = (req, res, next) => {};
