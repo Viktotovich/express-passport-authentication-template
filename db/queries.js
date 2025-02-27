@@ -15,7 +15,7 @@ module.exports.getUserByUname = async function (uname) {
 module.exports.getUserById = async function (uId) {
   try {
     const { rows } = await pool.query(
-      "SELECT * FROM users_and passwords WHERE id = $1",
+      "SELECT * FROM users_and_passwords WHERE id = $1",
       [uId]
     );
     return rows[0];

@@ -13,7 +13,23 @@ module.exports.getLogIn = (req, res, next) => {
   res.render("pages/login", { title, links });
 };
 
-module.exports.postLogIn = (req, res, next) => {};
+module.exports.postLogIn = async (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect("/login-failure");
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      return res.redirect("/login-success");
+    });
+  })(req, res, next);
+};
 
 module.exports.getRegister = (req, res, next) => {
   const title = "Register a new account";

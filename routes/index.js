@@ -8,6 +8,7 @@ const {
   getLogInFail,
   getLogInSuccess,
   getLogout,
+  getProtectedRoute,
 } = require("../controllers/indexController");
 
 indexRouter.get("/", getIndex);
@@ -17,6 +18,7 @@ indexRouter.get("/register", getRegister);
 indexRouter.post("/register", postRegister);
 indexRouter.get("/login-failure", getLogInFail);
 indexRouter.get("/login-success", getLogInSuccess);
+indexRouter.get("protected-route", getProtectedRoute);
 indexRouter.get("/logout", getLogout);
 
 module.exports = indexRouter;
